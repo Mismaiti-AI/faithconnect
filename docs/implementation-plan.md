@@ -62,13 +62,13 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Update existing theme files with ui_design colors
 
 **Tasks:**
-- [ ] **Update existing theme files (already in template):**
-- [ ]   - `AppColors.kt` - Update color values from ui_design
-- [ ]   - `AppTheme.kt` - Update MaterialTheme with new colors
-- [ ]   - `AppTheme.android.kt` - Platform-specific (already exists)
-- [ ]   - `AppTheme.ios.kt` - Platform-specific (already exists)
-- [ ] Apply colors from project-context.json ui_design section
-- [ ] Ensure dark color scheme is properly configured
+- [x] **Update existing theme files (already in template):**
+- [x]   - `AppColors.kt` - Update color values from ui_design
+- [x]   - `AppTheme.kt` - Update MaterialTheme with new colors
+- [x]   - `AppTheme.android.kt` - Platform-specific (already exists)
+- [x]   - `AppTheme.ios.kt` - Platform-specific (already exists)
+- [x] Apply colors from project-context.json ui_design section
+- [x] Ensure dark color scheme is properly configured
 
 ---
 
@@ -80,22 +80,22 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create domain model data classes (specs from project-context.json)
 
 **Tasks:**
-- [ ] **📖 Read entity specifications from `project-context.json → data_models`**
-- [ ] 
-- [ ] **Create Domain Models in `domain/model/`:**
-- [ ]   - [ ] `Event.kt` (11 fields - see context.json)
-- [ ]   - [ ] `NewsItem.kt` (10 fields - see context.json)
-- [ ]   - [ ] `ChurchProfile.kt` (10 fields - see context.json)
-- [ ] 
-- [ ] **Implementation Rules:**
-- [ ]   - Use `kotlin.time.Instant` for timestamps (NOT kotlinx.datetime)
-- [ ]   - Make all models `data class` with sensible defaults
-- [ ]   - Each model must have ALL fields from project-context.json
-- [ ] 
-- [ ] **✅ Completeness Check:**
-- [ ]   - Every entity in context.json has a .kt file
-- [ ]   - Each model has ALL required fields (no missing properties)
-- [ ]   - No empty data classes or TODOs
+- [x] **📖 Read entity specifications from `project-context.json → data_models`**
+- [x]
+- [x] **Create Domain Models in `domain/model/`:**
+- [x]   - [x] `Event.kt` (11 fields - see context.json)
+- [x]   - [x] `NewsItem.kt` (10 fields - see context.json)
+- [x]   - [x] `ChurchProfile.kt` (10 fields - see context.json)
+- [x]
+- [x] **Implementation Rules:**
+- [x]   - Use `kotlin.time.Instant` for timestamps (NOT kotlinx.datetime)
+- [x]   - Make all models `data class` with sensible defaults
+- [x]   - Each model must have ALL fields from project-context.json
+- [x]
+- [x] **✅ Completeness Check:**
+- [x]   - Every entity in context.json has a .kt file
+- [x]   - Each model has ALL required fields (no missing properties)
+- [x]   - No empty data classes or TODOs
 
 ---
 
@@ -109,28 +109,29 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create services, database, and repositories with state management
 
 **Tasks:**
-- [ ] **Create Google Sheets Service:**
-- [ ]   - `data/remote/GoogleSheetsService.kt` - CSV fetching with GID discovery
-- [ ]   - Support both edit URLs and published URLs (pubhtml)
-- [ ]   - Implement multi-format date parsing (yyyy-MM-dd, yyyy/MM/dd, dd/MM/yyyy)
-- [ ]   - Add CSV response validation (check for HTML error pages)
-- [ ]   - Handle missing tabs gracefully (return empty list, not crash)
-- [ ] **Create Room Database:**
-- [ ]   - `data/local/AppDatabase.kt` - Room @Database
-- [ ]   - `data/local/entity/EventEntity.kt` - Room @Entity
-- [ ]   - `data/local/dao/EventDao.kt` - Room @Dao with CRUD
-- [ ]   - `data/local/entity/NewsItemEntity.kt` - Room @Entity
-- [ ]   - `data/local/dao/NewsItemDao.kt` - Room @Dao with CRUD
-- [ ]   - `data/local/entity/ChurchProfileEntity.kt` - Room @Entity
-- [ ]   - `data/local/dao/ChurchProfileDao.kt` - Room @Dao with CRUD
-- [ ]   - Store timestamps as Long (not Instant) in entities
-- [ ] **Create Repositories (with STATE MANAGEMENT):**
-- [ ]   - `data/repository/ChurchProfileRepository.kt`
-- [ ]   - `data/repository/EventRepository.kt`
-- [ ]   - `data/repository/NewsItemRepository.kt`
-- [ ]   - Each repository holds `MutableStateFlow` for its data
-- [ ]   - Exposes `StateFlow` to ViewModels (read-only)
-- [ ]   - Implements offline-first: cache on fetch, serve from cache when offline
+- [x] **Create Google Sheets Service:**
+- [x]   - `data/remote/GoogleSheetsService.kt` - CSV fetching with GID discovery
+- [x]   - Support both edit URLs and published URLs (pubhtml)
+- [x]   - Implement multi-format date parsing (yyyy-MM-dd, yyyy/MM/dd, dd/MM/yyyy)
+- [x]   - Add CSV response validation (check for HTML error pages)
+- [x]   - Handle missing tabs gracefully (return empty list, not crash)
+- [x] **Create Room Database:**
+- [x]   - `core/database/AppDatabase.kt` - Room @Database
+- [x]   - `data/local/entity/EventEntity.kt` - Room @Entity
+- [x]   - `data/local/dao/EventDao.kt` - Room @Dao with CRUD
+- [x]   - `data/local/entity/NewsItemEntity.kt` - Room @Entity
+- [x]   - `data/local/dao/NewsItemDao.kt` - Room @Dao with CRUD
+- [x]   - `data/local/entity/ChurchProfileEntity.kt` - Room @Entity
+- [x]   - `data/local/dao/ChurchProfileDao.kt` - Room @Dao with CRUD
+- [x]   - Store timestamps as Long (not Instant) in entities
+- [x] **Create Repositories (with STATE MANAGEMENT):**
+- [x]   - `data/repository/ChurchProfileRepositoryImpl.kt`
+- [x]   - `data/repository/EventRepositoryImpl.kt`
+- [x]   - `data/repository/NewsItemRepositoryImpl.kt`
+- [x]   - `data/repository/PreferencesRepositoryImpl.kt`
+- [x]   - Each repository holds `MutableStateFlow` for its data
+- [x]   - Exposes `StateFlow` to ViewModels (read-only)
+- [x]   - Implements offline-first: cache on fetch, serve from cache when offline
 
 ---
 
