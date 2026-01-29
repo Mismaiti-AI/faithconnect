@@ -1,4 +1,4 @@
-package com.mismaiti
+package com.faithconnect
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -1,4 +1,4 @@
-package com.mismaiti
+package com.faithconnect
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

@@ -1,12 +1,12 @@
-package com.mismaiti
+package com.faithconnect
 
 import android.app.Application
 import co.touchlab.kermit.Logger
 
-class MismaitiApp : Application() {
+class FaithConnectApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Logger.withTag("MismaitiApp").d("onCreate")
+        Logger.withTag("FaithConnectApp").d("onCreate")
     }
 }

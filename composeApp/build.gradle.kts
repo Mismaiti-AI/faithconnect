@@ -92,11 +92,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.mismaiti"
+    namespace = "com.faithconnect"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.mismaiti"
+        applicationId = "com.faithconnect"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -131,6 +131,6 @@ room {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "com.mismaiti"
+    packageOfResClass = "com.faithconnect"
     generateResClass = always
 }
