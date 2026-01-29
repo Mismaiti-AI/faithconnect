@@ -179,10 +179,13 @@ internal fun AppTheme(
         ),
     )
 
+    // Elegant style - subtle rounded corners for sophistication
     val shapes = Shapes(
-        small = RoundedCornerShape(4.dp),
-        medium = RoundedCornerShape(8.dp),
-        large = RoundedCornerShape(24.dp)
+        extraSmall = RoundedCornerShape(4.dp),
+        small = RoundedCornerShape(8.dp),
+        medium = RoundedCornerShape(12.dp),
+        large = RoundedCornerShape(16.dp),
+        extraLarge = RoundedCornerShape(20.dp)
     )
 
     val systemIsDark = isSystemInDarkTheme()
