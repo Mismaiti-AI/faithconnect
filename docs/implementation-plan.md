@@ -125,9 +125,9 @@ Each phase specifies which skills to load to minimize token usage.
 - [ ]   - `data/local/dao/ChurchProfileDao.kt` - Room @Dao with CRUD
 - [ ]   - Store timestamps as Long (not Instant) in entities
 - [ ] **Create Repositories (with STATE MANAGEMENT):**
-- [ ]   - `data/repository/ChurchProfileRepository.kt`
-- [ ]   - `data/repository/EventRepository.kt`
-- [ ]   - `data/repository/NewsItemRepository.kt`
+- [ ]   - [ ] `data/repositories/churchprofile/ChurchProfileRepository.kt`
+- [ ]   - [ ] `data/repositories/event/EventRepository.kt`
+- [ ]   - [ ] `data/repositories/newsitem/NewsItemRepository.kt`
 - [ ]   - Each repository holds `MutableStateFlow` for its data
 - [ ]   - Exposes `StateFlow` to ViewModels (read-only)
 - [ ]   - Implements offline-first: cache on fetch, serve from cache when offline
@@ -173,16 +173,16 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create THIN ViewModels that observe repository state
 
 **Tasks:**
-- [ ] **Create ViewModels in `presentation/viewmodel/`:**
-- [ ]   - `AdminConfigViewModel.kt` with `AdminConfigUiState` sealed interface
-- [ ]   - `ChurchProfileViewModel.kt` with `ChurchProfileUiState` sealed interface
-- [ ]   - `EventCalendarViewModel.kt` with `EventCalendarUiState` sealed interface
-- [ ]   - `EventCategoryFilterViewModel.kt` with `EventCategoryFilterUiState` sealed interface
-- [ ]   - `EventDetailViewModel.kt` with `EventDetailUiState` sealed interface
-- [ ]   - `NewsDetailViewModel.kt` with `NewsDetailUiState` sealed interface
-- [ ]   - `NewsFeedViewModel.kt` with `NewsFeedUiState` sealed interface
-- [ ]   - `OnboardingViewModel.kt` with `OnboardingUiState` sealed interface
-- [ ]   - `SettingsViewModel.kt` with `SettingsUiState` sealed interface
+- [ ] **Create ViewModels (feature-based organization):**
+- [ ]   - [ ] `presentation/adminconfig/AdminConfigViewModel.kt` with `AdminConfigUiState` sealed interface
+- [ ]   - [ ] `presentation/churchprofile/ChurchProfileViewModel.kt` with `ChurchProfileUiState` sealed interface
+- [ ]   - [ ] `presentation/eventcalendar/EventCalendarViewModel.kt` with `EventCalendarUiState` sealed interface
+- [ ]   - [ ] `presentation/eventcategoryfilter/EventCategoryFilterViewModel.kt` with `EventCategoryFilterUiState` sealed interface
+- [ ]   - [ ] `presentation/eventdetail/EventDetailViewModel.kt` with `EventDetailUiState` sealed interface
+- [ ]   - [ ] `presentation/newsdetail/NewsDetailViewModel.kt` with `NewsDetailUiState` sealed interface
+- [ ]   - [ ] `presentation/newsfeed/NewsFeedViewModel.kt` with `NewsFeedUiState` sealed interface
+- [ ]   - [ ] `presentation/onboarding/OnboardingViewModel.kt` with `OnboardingUiState` sealed interface
+- [ ]   - [ ] `presentation/settings/SettingsViewModel.kt` with `SettingsUiState` sealed interface
 - [ ] **UiState Pattern:**
 - [ ]   - `sealed interface XxxUiState { Loading, Success(data), Error(message) }`
 - [ ]   - ViewModel exposes `val uiState: StateFlow<XxxUiState>`
@@ -201,16 +201,25 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create screen composables with proper state handling
 
 **Tasks:**
-- [ ] **Create Screens in `presentation/screen/`:**
-- [ ]   - `AdminConfigScreen.kt` using `AdminConfigViewModel`
-- [ ]   - `ChurchProfileScreen.kt` using `ChurchProfileViewModel`
-- [ ]   - `EventCalendarScreen.kt` using `EventCalendarViewModel`
-- [ ]   - `EventCategoryFilterScreen.kt` using `EventCategoryFilterViewModel`
-- [ ]   - `EventDetailScreen.kt` using `EventDetailViewModel`
-- [ ]   - `NewsDetailScreen.kt` using `NewsDetailViewModel`
-- [ ]   - `NewsFeedScreen.kt` using `NewsFeedViewModel`
-- [ ]   - `OnboardingScreen.kt` using `OnboardingViewModel`
-- [ ]   - `SettingsScreen.kt` using `SettingsViewModel`
+- [ ] **Create Screens (feature-based organization):**
+- [ ]   - [ ] `presentation/adminconfig/AdminConfigScreen.kt` using `AdminConfigViewModel`
+- [ ]   - [ ] `presentation/adminconfig/AdminConfigUiState.kt` sealed interface
+- [ ]   - [ ] `presentation/churchprofile/ChurchProfileScreen.kt` using `ChurchProfileViewModel`
+- [ ]   - [ ] `presentation/churchprofile/ChurchProfileUiState.kt` sealed interface
+- [ ]   - [ ] `presentation/eventcalendar/EventCalendarScreen.kt` using `EventCalendarViewModel`
+- [ ]   - [ ] `presentation/eventcalendar/EventCalendarUiState.kt` sealed interface
+- [ ]   - [ ] `presentation/eventcategoryfilter/EventCategoryFilterScreen.kt` using `EventCategoryFilterViewModel`
+- [ ]   - [ ] `presentation/eventcategoryfilter/EventCategoryFilterUiState.kt` sealed interface
+- [ ]   - [ ] `presentation/eventdetail/EventDetailScreen.kt` using `EventDetailViewModel`
+- [ ]   - [ ] `presentation/eventdetail/EventDetailUiState.kt` sealed interface
+- [ ]   - [ ] `presentation/newsdetail/NewsDetailScreen.kt` using `NewsDetailViewModel`
+- [ ]   - [ ] `presentation/newsdetail/NewsDetailUiState.kt` sealed interface
+- [ ]   - [ ] `presentation/newsfeed/NewsFeedScreen.kt` using `NewsFeedViewModel`
+- [ ]   - [ ] `presentation/newsfeed/NewsFeedUiState.kt` sealed interface
+- [ ]   - [ ] `presentation/onboarding/OnboardingScreen.kt` using `OnboardingViewModel`
+- [ ]   - [ ] `presentation/onboarding/OnboardingUiState.kt` sealed interface
+- [ ]   - [ ] `presentation/settings/SettingsScreen.kt` using `SettingsViewModel`
+- [ ]   - [ ] `presentation/settings/SettingsUiState.kt` sealed interface
 - [ ] **Screen Pattern:**
 - [ ]   - `@Composable fun XxxScreen(viewModel: XxxViewModel = koinViewModel())`
 - [ ]   - Collect state: `val uiState by viewModel.uiState.collectAsState()`
