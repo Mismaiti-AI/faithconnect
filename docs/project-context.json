@@ -1,0 +1,821 @@
+{
+  "session_id": "session_1769668777314_dd59lm5qjak",
+  "generated_at": "2026-01-29T06:40:00.848726",
+  "app_config": {
+    "name": "FaithConnect",
+    "purpose": "Help congregation get an update of church activities, special events like seminar or workshop, news and article",
+    "package": "com.faithconnect",
+    "splash_screen": {
+      "enabled": true,
+      "branding": "FaithFlow"
+    },
+    "connectivity_mode": "both"
+  },
+  "features": [
+    {
+      "name": "Event Calendar",
+      "description": "Browse upcoming seminars, workshops, and church activities with date, time, and category",
+      "priority": "high",
+      "use_cases": [
+        "GetUpcomingEventsUsecase",
+        "FilterEventsByCategoryUsecase",
+        "SearchEventsUsecase"
+      ],
+      "repositories": [],
+      "screens": [
+        "EventCalendarScreen",
+        "EventDetailScreen",
+        "EventCategoryFilterScreen"
+      ],
+      "api_endpoints": []
+    },
+    {
+      "name": "News Feed",
+      "description": "Read church announcements, pastoral updates, and community highlights",
+      "priority": "high",
+      "use_cases": [
+        "GetLatestNewsUsecase",
+        "MarkNewsAsReadUsecase",
+        "LoadNewsByDateRangeUsecase"
+      ],
+      "repositories": [],
+      "screens": [
+        "NewsFeedScreen",
+        "NewsDetailScreen"
+      ],
+      "api_endpoints": []
+    },
+    {
+      "name": "Event Details",
+      "description": "View full details for any event — including location, description, speaker, and registration info",
+      "priority": "medium",
+      "use_cases": [
+        "FetchEventLocationUsecase",
+        "GetEventDescriptionUsecase",
+        "OpenMapForLocationUsecase"
+      ],
+      "repositories": [],
+      "screens": [
+        "EventDetailScreen"
+      ],
+      "api_endpoints": []
+    },
+    {
+      "name": "Category Filtering",
+      "description": "Filter events and news by ministry or audience (e.g., Youth, Women’s Ministry, Outreach)",
+      "priority": "medium",
+      "use_cases": [
+        "ApplyCategoryFilterUsecase",
+        "SavePreferredCategoriesUsecase",
+        "ResetFiltersUsecase"
+      ],
+      "repositories": [],
+      "screens": [
+        "EventCategoryFilterScreen",
+        "SettingsScreen"
+      ],
+      "api_endpoints": []
+    },
+    {
+      "name": "Admin Configuration",
+      "description": "Enables church administrators to configure and manage their FaithFlow instance — including setting the Google Sheet URL, validating connectivity, and updating church profile data.",
+      "priority": "high",
+      "use_cases": [
+        "SetGoogleSheetUrlUsecase",
+        "TestSheetConnectionUsecase",
+        "UpdateChurchProfileUsecase"
+      ],
+      "repositories": [],
+      "screens": [
+        "OnboardingScreen",
+        "AdminConfigScreen",
+        "ChurchProfileScreen"
+      ],
+      "api_endpoints": []
+    }
+  ],
+  "data_models": [
+    {
+      "name": "Event",
+      "layer": "domain",
+      "fields": [
+        "id: String",
+        "title: String",
+        "date: Instant",
+        "category: String",
+        "location: String",
+        "description: String",
+        "topic: String",
+        "bibleVerse: String",
+        "picCouncilMember: String",
+        "onDutyCouncilMembers: List<String>",
+        "isFeatured: Boolean"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "NewsItem",
+      "layer": "domain",
+      "fields": [
+        "id: String",
+        "headline: String",
+        "publishDate: Instant",
+        "author: String",
+        "body: String",
+        "category: String",
+        "scriptureReference: String",
+        "isUrgent: Boolean",
+        "photoURL: String",
+        "relatedEventId: String"
+      ],
+      "relationships": []
+    },
+    {
+      "name": "ChurchProfile",
+      "layer": "domain",
+      "fields": [
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "logoURL",
+          "type": "String"
+        },
+        {
+          "name": "welcomeMessage",
+          "type": "String"
+        },
+        {
+          "name": "address",
+          "type": "String"
+        },
+        {
+          "name": "phone",
+          "type": "String"
+        },
+        {
+          "name": "website",
+          "type": "String"
+        },
+        {
+          "name": "email",
+          "type": "String"
+        },
+        {
+          "name": "mission",
+          "type": "String"
+        },
+        {
+          "name": "serviceTimes",
+          "type": "String"
+        },
+        {
+          "name": "socialFacebook",
+          "type": "String"
+        }
+      ],
+      "relationships": []
+    }
+  ],
+  "navigation_flows": {
+    "start_screen": "HomeScreen",
+    "flows": [
+      "HomeScreen -> NewsFeedScreen (tap 'Latest News')",
+      "HomeScreen -> EventCalendarScreen (tap 'Upcoming Events')",
+      "HomeScreen -> ChurchProfileScreen (tap 'About Us')",
+      "ChurchProfileScreen -> SetupScreen (tap 'Update Sheet')",
+      "SetupScreen -> HomeScreen (after successful sheet load)",
+      "SplashScreen -> SetupScreen (first launch only)"
+    ]
+  },
+  "integrations": [],
+  "backend_config": {
+    "type": "google_sheets",
+    "config": {}
+  },
+  "ui_design": {
+    "style": "elegant",
+    "colors": [
+      "#4A235A",
+      "#FFFFF0",
+      "#333333"
+    ],
+    "has_dark_mode": true,
+    "inspiration": null,
+    "has_logo": true
+  },
+  "ui_schema": {
+    "meta": {
+      "schemaVersion": "1.0",
+      "generatedAt": "2026-01-28T09:04:39.473933",
+      "sessionId": "session_1769590731647_ugn9sengc8s"
+    },
+    "app": {
+      "name": "FaithFlow",
+      "package": "com.faithflow",
+      "purpose": "Help congregation get an update of church activities, special events like seminar or workshop, news and article",
+      "splashScreen": {
+        "enabled": true,
+        "brandingText": "FaithFlow",
+        "backgroundColor": "#4A235A"
+      }
+    },
+    "theme": {
+      "mode": "dark",
+      "colors": {
+        "primary": "#4A235A",
+        "onPrimary": "#FFFFFF",
+        "secondary": "#FF9800",
+        "onSecondary": "#FFFFFF",
+        "background": "#FFFFFF",
+        "onBackground": "#212121",
+        "surface": "#FFFFFF",
+        "onSurface": "#212121",
+        "surfaceVariant": "#F5F5F5",
+        "onSurfaceVariant": "#757575",
+        "error": "#F44336",
+        "onError": "#FFFFFF",
+        "outline": "#BDBDBD"
+      },
+      "spacing": {
+        "xs": 4,
+        "sm": 8,
+        "md": 16,
+        "lg": 24,
+        "xl": 32
+      },
+      "shapes": {
+        "small": 8,
+        "medium": 12,
+        "large": 16
+      }
+    },
+    "screens": [
+      {
+        "id": "home",
+        "name": "HomeScreen",
+        "type": "scaffold",
+        "route": "/home",
+        "appBar": {
+          "title": "FaithFlow",
+          "showBackButton": false,
+          "actions": [
+            "settings"
+          ]
+        },
+        "body": {
+          "type": "column",
+          "padding": "md",
+          "spacing": "md",
+          "children": [
+            {
+              "$ref": "#/components/event_calendarCard"
+            },
+            {
+              "$ref": "#/components/news_feedCard"
+            },
+            {
+              "$ref": "#/components/event_detailsCard"
+            },
+            {
+              "$ref": "#/components/category_filteringCard"
+            },
+            {
+              "$ref": "#/components/admin_configurationCard"
+            }
+          ]
+        },
+        "bottomNavigation": {
+          "$ref": "#/navigation/bottomNav"
+        }
+      },
+      {
+        "id": "event_calendar",
+        "name": "EventCalendarScreen",
+        "type": "scaffold",
+        "route": "/event_calendar",
+        "appBar": {
+          "title": "Event Calendar",
+          "showBackButton": true
+        },
+        "body": {
+          "type": "list",
+          "itemTemplate": {
+            "$ref": "#/components/event_calendarListItem"
+          },
+          "dataSource": {
+            "$ref": "#/dataBindings/event_calendarList"
+          },
+          "emptyState": {
+            "icon": "inbox",
+            "title": "No event calendar yet",
+            "subtitle": "Tap + to add your first item"
+          }
+        },
+        "floatingActionButton": {
+          "icon": "add",
+          "onTap": {
+            "navigate": "/event_calendar/add"
+          }
+        }
+      },
+      {
+        "id": "news_feed",
+        "name": "NewsFeedScreen",
+        "type": "scaffold",
+        "route": "/news_feed",
+        "appBar": {
+          "title": "News Feed",
+          "showBackButton": true
+        },
+        "body": {
+          "type": "list",
+          "itemTemplate": {
+            "$ref": "#/components/news_feedListItem"
+          },
+          "dataSource": {
+            "$ref": "#/dataBindings/news_feedList"
+          },
+          "emptyState": {
+            "icon": "inbox",
+            "title": "No news feed yet",
+            "subtitle": "Tap + to add your first item"
+          }
+        },
+        "floatingActionButton": {
+          "icon": "add",
+          "onTap": {
+            "navigate": "/news_feed/add"
+          }
+        }
+      },
+      {
+        "id": "event_details",
+        "name": "EventDetailsScreen",
+        "type": "scaffold",
+        "route": "/event_details",
+        "appBar": {
+          "title": "Event Details",
+          "showBackButton": true
+        },
+        "body": {
+          "type": "list",
+          "itemTemplate": {
+            "$ref": "#/components/event_detailsListItem"
+          },
+          "dataSource": {
+            "$ref": "#/dataBindings/event_detailsList"
+          },
+          "emptyState": {
+            "icon": "inbox",
+            "title": "No event details yet",
+            "subtitle": "Tap + to add your first item"
+          }
+        },
+        "floatingActionButton": {
+          "icon": "add",
+          "onTap": {
+            "navigate": "/event_details/add"
+          }
+        }
+      },
+      {
+        "id": "category_filtering",
+        "name": "CategoryFilteringScreen",
+        "type": "scaffold",
+        "route": "/category_filtering",
+        "appBar": {
+          "title": "Category Filtering",
+          "showBackButton": true
+        },
+        "body": {
+          "type": "list",
+          "itemTemplate": {
+            "$ref": "#/components/category_filteringListItem"
+          },
+          "dataSource": {
+            "$ref": "#/dataBindings/category_filteringList"
+          },
+          "emptyState": {
+            "icon": "inbox",
+            "title": "No category filtering yet",
+            "subtitle": "Tap + to add your first item"
+          }
+        },
+        "floatingActionButton": {
+          "icon": "add",
+          "onTap": {
+            "navigate": "/category_filtering/add"
+          }
+        }
+      },
+      {
+        "id": "admin_configuration",
+        "name": "AdminConfigurationScreen",
+        "type": "scaffold",
+        "route": "/admin_configuration",
+        "appBar": {
+          "title": "Admin Configuration",
+          "showBackButton": true
+        },
+        "body": {
+          "type": "list",
+          "itemTemplate": {
+            "$ref": "#/components/admin_configurationListItem"
+          },
+          "dataSource": {
+            "$ref": "#/dataBindings/admin_configurationList"
+          },
+          "emptyState": {
+            "icon": "inbox",
+            "title": "No admin configuration yet",
+            "subtitle": "Tap + to add your first item"
+          }
+        },
+        "floatingActionButton": {
+          "icon": "add",
+          "onTap": {
+            "navigate": "/admin_configuration/add"
+          }
+        }
+      }
+    ],
+    "components": {
+      "event_calendarCard": {
+        "type": "Card",
+        "elevation": 1,
+        "padding": "md",
+        "onTap": {
+          "navigate": "/event_calendar"
+        },
+        "children": [
+          {
+            "type": "Row",
+            "spacing": "md",
+            "children": [
+              {
+                "type": "Icon",
+                "icon": "calendar_today",
+                "color": "primary"
+              },
+              {
+                "type": "Column",
+                "children": [
+                  {
+                    "type": "Text",
+                    "text": "Event Calendar",
+                    "style": "titleMedium"
+                  },
+                  {
+                    "type": "Text",
+                    "text": "Browse upcoming seminars, workshops, and church ac",
+                    "style": "bodySmall",
+                    "color": "onSurfaceVariant"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "event_calendarListItem": {
+        "type": "ListItem",
+        "leading": {
+          "type": "Checkbox",
+          "bind": "isCompleted"
+        },
+        "title": {
+          "bind": "title"
+        },
+        "subtitle": {
+          "bind": "subtitle"
+        },
+        "trailing": {
+          "type": "Icon",
+          "icon": "chevron_right"
+        },
+        "onTap": {
+          "navigate": "/event_calendar/{id}"
+        }
+      },
+      "news_feedCard": {
+        "type": "Card",
+        "elevation": 1,
+        "padding": "md",
+        "onTap": {
+          "navigate": "/news_feed"
+        },
+        "children": [
+          {
+            "type": "Row",
+            "spacing": "md",
+            "children": [
+              {
+                "type": "Icon",
+                "icon": "article",
+                "color": "primary"
+              },
+              {
+                "type": "Column",
+                "children": [
+                  {
+                    "type": "Text",
+                    "text": "News Feed",
+                    "style": "titleMedium"
+                  },
+                  {
+                    "type": "Text",
+                    "text": "Read church announcements, pastoral updates, and c",
+                    "style": "bodySmall",
+                    "color": "onSurfaceVariant"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "news_feedListItem": {
+        "type": "ListItem",
+        "leading": {
+          "type": "Checkbox",
+          "bind": "isCompleted"
+        },
+        "title": {
+          "bind": "title"
+        },
+        "subtitle": {
+          "bind": "subtitle"
+        },
+        "trailing": {
+          "type": "Icon",
+          "icon": "chevron_right"
+        },
+        "onTap": {
+          "navigate": "/news_feed/{id}"
+        }
+      },
+      "event_detailsCard": {
+        "type": "Card",
+        "elevation": 1,
+        "padding": "md",
+        "onTap": {
+          "navigate": "/event_details"
+        },
+        "children": [
+          {
+            "type": "Row",
+            "spacing": "md",
+            "children": [
+              {
+                "type": "Icon",
+                "icon": "event",
+                "color": "primary"
+              },
+              {
+                "type": "Column",
+                "children": [
+                  {
+                    "type": "Text",
+                    "text": "Event Details",
+                    "style": "titleMedium"
+                  },
+                  {
+                    "type": "Text",
+                    "text": "View full details for any event — including locati",
+                    "style": "bodySmall",
+                    "color": "onSurfaceVariant"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "event_detailsListItem": {
+        "type": "ListItem",
+        "leading": {
+          "type": "Checkbox",
+          "bind": "isCompleted"
+        },
+        "title": {
+          "bind": "title"
+        },
+        "subtitle": {
+          "bind": "subtitle"
+        },
+        "trailing": {
+          "type": "Icon",
+          "icon": "chevron_right"
+        },
+        "onTap": {
+          "navigate": "/event_details/{id}"
+        }
+      },
+      "category_filteringCard": {
+        "type": "Card",
+        "elevation": 1,
+        "padding": "md",
+        "onTap": {
+          "navigate": "/category_filtering"
+        },
+        "children": [
+          {
+            "type": "Row",
+            "spacing": "md",
+            "children": [
+              {
+                "type": "Icon",
+                "icon": "filter_list",
+                "color": "primary"
+              },
+              {
+                "type": "Column",
+                "children": [
+                  {
+                    "type": "Text",
+                    "text": "Category Filtering",
+                    "style": "titleMedium"
+                  },
+                  {
+                    "type": "Text",
+                    "text": "Filter events and news by ministry or audience (e.",
+                    "style": "bodySmall",
+                    "color": "onSurfaceVariant"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "category_filteringListItem": {
+        "type": "ListItem",
+        "leading": {
+          "type": "Checkbox",
+          "bind": "isCompleted"
+        },
+        "title": {
+          "bind": "title"
+        },
+        "subtitle": {
+          "bind": "subtitle"
+        },
+        "trailing": {
+          "type": "Icon",
+          "icon": "chevron_right"
+        },
+        "onTap": {
+          "navigate": "/category_filtering/{id}"
+        }
+      },
+      "admin_configurationCard": {
+        "type": "Card",
+        "elevation": 1,
+        "padding": "md",
+        "onTap": {
+          "navigate": "/admin_configuration"
+        },
+        "children": [
+          {
+            "type": "Row",
+            "spacing": "md",
+            "children": [
+              {
+                "type": "Icon",
+                "icon": "settings",
+                "color": "primary"
+              },
+              {
+                "type": "Column",
+                "children": [
+                  {
+                    "type": "Text",
+                    "text": "Admin Configuration",
+                    "style": "titleMedium"
+                  },
+                  {
+                    "type": "Text",
+                    "text": "Enables church administrators to configure and man",
+                    "style": "bodySmall",
+                    "color": "onSurfaceVariant"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "admin_configurationListItem": {
+        "type": "ListItem",
+        "leading": {
+          "type": "Checkbox",
+          "bind": "isCompleted"
+        },
+        "title": {
+          "bind": "title"
+        },
+        "subtitle": {
+          "bind": "subtitle"
+        },
+        "trailing": {
+          "type": "Icon",
+          "icon": "chevron_right"
+        },
+        "onTap": {
+          "navigate": "/admin_configuration/{id}"
+        }
+      }
+    },
+    "navigation": {
+      "startRoute": "/home",
+      "bottomNav": {
+        "items": [
+          {
+            "route": "/home",
+            "icon": "home",
+            "label": "Home"
+          },
+          {
+            "route": "/event_calendar",
+            "icon": "calendar_today",
+            "label": "Event Calend"
+          },
+          {
+            "route": "/news_feed",
+            "icon": "article",
+            "label": "News Feed"
+          },
+          {
+            "route": "/event_details",
+            "icon": "event",
+            "label": "Event Detail"
+          },
+          {
+            "route": "/category_filtering",
+            "icon": "filter_list",
+            "label": "Category Fil"
+          }
+        ]
+      },
+      "routes": {
+        "/event_calendar": {
+          "screen": "event_calendar",
+          "presentation": "push"
+        },
+        "/news_feed": {
+          "screen": "news_feed",
+          "presentation": "push"
+        },
+        "/event_details": {
+          "screen": "event_details",
+          "presentation": "push"
+        },
+        "/category_filtering": {
+          "screen": "category_filtering",
+          "presentation": "push"
+        },
+        "/admin_configuration": {
+          "screen": "admin_configuration",
+          "presentation": "push"
+        },
+        "/home": {
+          "screen": "home"
+        }
+      }
+    },
+    "dataBindings": {
+      "event_calendarList": {
+        "model": "Event",
+        "query": "all",
+        "sortBy": "createdAt",
+        "sortOrder": "desc"
+      },
+      "news_feedList": {
+        "model": "NewsFeed",
+        "query": "all"
+      },
+      "event_detailsList": {
+        "model": "Event",
+        "query": "all",
+        "sortBy": "createdAt",
+        "sortOrder": "desc"
+      },
+      "category_filteringList": {
+        "model": "CategoryFiltering",
+        "query": "all"
+      },
+      "admin_configurationList": {
+        "model": "AdminConfiguration",
+        "query": "all"
+      }
+    }
+  },
+  "deployment_config": {
+    "firebase_email": "mismaiti@gmail.com",
+    "apple_id": "mismaiti@gmail.com",
+    "enable_firebase_distribution": true,
+    "enable_testflight": true
+  }
+}
