@@ -35,9 +35,9 @@ fun OnboardingScreen(
                 is OnboardingUiState.Ready -> {
                     OnboardingContent(
                         state = state,
-                        onSheetUrlChange = { viewModel.setSheetUrl(it) },
+                        onSheetUrlChange = { viewModel.validateAndSaveUrl(it) },
                         onTestConnection = { viewModel.testConnection() },
-                        onGetStarted = { viewModel.saveConfig() },
+                        onGetStarted = { viewModel.completeOnboarding() },
                         onClearError = { viewModel.clearError() }
                     )
                 }

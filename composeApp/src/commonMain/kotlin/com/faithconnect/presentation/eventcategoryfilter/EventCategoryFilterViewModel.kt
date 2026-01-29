@@ -76,8 +76,8 @@ class EventCategoryFilterViewModel(
      */
     private fun loadSavedPreferences() {
         viewModelScope.launch {
-            val savedCategories = applyCategoryFilterUseCase.getSavedCategories()
-            _selectedCategories.value = savedCategories
+            val savedCategories = savePreferredCategoriesUseCase.load()
+            _selectedCategories.value = savedCategories.toSet()
         }
     }
 
@@ -103,7 +103,8 @@ class EventCategoryFilterViewModel(
      */
     fun applyFilter(categories: Set<String>) {
         viewModelScope.launch {
-            applyCategoryFilterUseCase(categories)
+            // ApplyCategoryFilterUseCase doesn't need to be called here
+            // It's used for filtering flows, not for saving state
             _selectedCategories.value = categories
         }
     }
@@ -115,7 +116,7 @@ class EventCategoryFilterViewModel(
         viewModelScope.launch {
             _isSaving.value = true
             try {
-                savePreferredCategoriesUseCase(_selectedCategories.value)
+                savePreferredCategoriesUseCase(_selectedCategories.value.toList())
             } finally {
                 _isSaving.value = false
             }

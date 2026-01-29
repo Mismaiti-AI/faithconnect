@@ -56,6 +56,19 @@ class FilterEventsByCategoryUseCase(
     }
 
     /**
+     * Filter events list by category (synchronous version for immediate filtering).
+     *
+     * @param events List of events to filter.
+     * @param category The category to filter by (case-insensitive).
+     * @return Filtered list of events.
+     */
+    fun filterByCategory(events: List<Event>, category: String): List<Event> {
+        return events.filter { event ->
+            event.category.equals(category, ignoreCase = true)
+        }
+    }
+
+    /**
      * Get unique list of all categories from events.
      * Useful for displaying filter options.
      */

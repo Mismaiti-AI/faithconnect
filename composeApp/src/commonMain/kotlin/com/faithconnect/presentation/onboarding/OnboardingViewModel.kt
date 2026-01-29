@@ -2,6 +2,7 @@ package com.faithconnect.presentation.onboarding
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.faithconnect.core.network.ApiResult
 import com.faithconnect.domain.usecase.SetGoogleSheetUrlUseCase
 import com.faithconnect.domain.usecase.TestSheetConnectionUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -86,21 +87,24 @@ class OnboardingViewModel(
 
             try {
                 val result = setGoogleSheetUrlUseCase(url)
-                if (result.isSuccess) {
-                    _uiState.update {
-                        (it as OnboardingUiState.Ready).copy(
-                            isSaving = false,
-                            error = null
-                        )
+                result.fold(
+                    onSuccess = {
+                        _uiState.update {
+                            (it as OnboardingUiState.Ready).copy(
+                                isSaving = false,
+                                error = null
+                            )
+                        }
+                    },
+                    onFailure = { error ->
+                        _uiState.update {
+                            (it as OnboardingUiState.Ready).copy(
+                                isSaving = false,
+                                error = error.message ?: "Failed to save URL"
+                            )
+                        }
                     }
-                } else {
-                    _uiState.update {
-                        (it as OnboardingUiState.Ready).copy(
-                            isSaving = false,
-                            error = result.exceptionOrNull()?.message ?: "Failed to save URL"
-                        )
-                    }
-                }
+                )
             } catch (e: Exception) {
                 _uiState.update {
                     (it as OnboardingUiState.Ready).copy(
@@ -131,10 +135,10 @@ class OnboardingViewModel(
                 _uiState.update {
                     (it as OnboardingUiState.Ready).copy(
                         isTestingConnection = false,
-                        connectionTestResult = if (result.isSuccess) {
+                        connectionTestResult = if (result.isSuccessful) {
                             ConnectionTestResult.Success
                         } else {
-                            ConnectionTestResult.Failure(result.exceptionOrNull()?.message ?: "Connection failed")
+                            ConnectionTestResult.Failure(result.message)
                         }
                     )
                 }

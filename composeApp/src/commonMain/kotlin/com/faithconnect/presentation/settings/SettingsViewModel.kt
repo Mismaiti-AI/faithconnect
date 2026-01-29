@@ -80,6 +80,24 @@ class SettingsViewModel(
     }
 
     /**
+     * Toggle a specific category in preferred categories.
+     *
+     * @param category Category to toggle.
+     */
+    fun togglePreferredCategory(category: String) {
+        val currentState = _uiState.value
+        if (currentState !is SettingsUiState.Success) return
+
+        val newCategories = if (currentState.preferredCategories.contains(category)) {
+            currentState.preferredCategories - category
+        } else {
+            currentState.preferredCategories + category
+        }
+
+        updatePreferredCategories(newCategories)
+    }
+
+    /**
      * Toggle dark mode preference.
      *
      * @param enabled Whether dark mode should be enabled.

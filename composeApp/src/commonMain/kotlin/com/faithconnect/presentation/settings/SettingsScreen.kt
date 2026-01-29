@@ -44,9 +44,16 @@ fun SettingsScreen(
                 is SettingsUiState.Success -> {
                     SettingsContent(
                         state = state,
-                        onDarkModeToggle = { viewModel.toggleDarkMode() },
+                        onDarkModeToggle = { enabled -> viewModel.toggleDarkMode(enabled) },
                         onCategoryToggle = { category ->
-                            viewModel.togglePreferredCategory(category)
+                            // Toggle category in preferred categories set
+                            val currentCategories = state.preferredCategories.toMutableSet()
+                            if (currentCategories.contains(category)) {
+                                currentCategories.remove(category)
+                            } else {
+                                currentCategories.add(category)
+                            }
+                            viewModel.updatePreferredCategories(currentCategories)
                         },
                         onClearCache = { viewModel.clearCache() },
                         onResetDefaults = { viewModel.resetToDefaults() },

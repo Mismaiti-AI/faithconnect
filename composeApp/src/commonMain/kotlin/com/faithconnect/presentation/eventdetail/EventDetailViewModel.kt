@@ -81,7 +81,7 @@ class EventDetailViewModel(
     fun getEventDescription(): String? {
         val currentState = uiState.value
         return if (currentState is EventDetailUiState.Success && currentState.event != null) {
-            getEventDescriptionUseCase(currentState.event)
+            getEventDescriptionUseCase.getFormattedDescription(currentState.event)
         } else {
             null
         }
@@ -94,7 +94,7 @@ class EventDetailViewModel(
         viewModelScope.launch {
             val currentState = uiState.value
             if (currentState is EventDetailUiState.Success && currentState.event != null) {
-                openMapForLocationUseCase(currentState.event.location)
+                openMapForLocationUseCase(currentState.event)
             }
         }
     }

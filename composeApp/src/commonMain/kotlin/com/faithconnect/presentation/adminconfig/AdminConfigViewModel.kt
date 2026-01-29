@@ -2,6 +2,7 @@ package com.faithconnect.presentation.adminconfig
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.faithconnect.core.network.ApiResult
 import com.faithconnect.domain.usecase.SetGoogleSheetUrlUseCase
 import com.faithconnect.domain.usecase.TestSheetConnectionUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -80,10 +81,10 @@ class AdminConfigViewModel(
                 _uiState.update {
                     (it as AdminConfigUiState.Success).copy(
                         isTestingConnection = false,
-                        connectionTestResult = if (result.isSuccess) {
+                        connectionTestResult = if (result.isSuccessful) {
                             ConnectionTestResult.Success
                         } else {
-                            ConnectionTestResult.Failure(result.exceptionOrNull()?.message ?: "Connection failed")
+                            ConnectionTestResult.Failure(result.message)
                         }
                     )
                 }
@@ -114,21 +115,24 @@ class AdminConfigViewModel(
 
             try {
                 val result = setGoogleSheetUrlUseCase(currentState.sheetUrl)
-                if (result.isSuccess) {
-                    _uiState.update {
-                        (it as AdminConfigUiState.Success).copy(
-                            isSaving = false,
-                            error = null
-                        )
+                result.fold(
+                    onSuccess = {
+                        _uiState.update {
+                            (it as AdminConfigUiState.Success).copy(
+                                isSaving = false,
+                                error = null
+                            )
+                        }
+                    },
+                    onFailure = { error ->
+                        _uiState.update {
+                            (it as AdminConfigUiState.Success).copy(
+                                isSaving = false,
+                                error = error.message ?: "Failed to save configuration"
+                            )
+                        }
                     }
-                } else {
-                    _uiState.update {
-                        (it as AdminConfigUiState.Success).copy(
-                            isSaving = false,
-                            error = result.exceptionOrNull()?.message ?: "Failed to save configuration"
-                        )
-                    }
-                }
+                )
             } catch (e: Exception) {
                 _uiState.update {
                     (it as AdminConfigUiState.Success).copy(

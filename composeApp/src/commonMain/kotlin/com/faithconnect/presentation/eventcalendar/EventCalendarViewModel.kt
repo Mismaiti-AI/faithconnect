@@ -36,7 +36,9 @@ class EventCalendarViewModel(
             allEvents.isNotEmpty() || !isLoading -> {
                 // Filter events by category if selected
                 val filteredEvents = if (selectedCategory != null) {
-                    filterEventsByCategoryUseCase.filterByCategory(allEvents, selectedCategory)
+                    allEvents.filter { event ->
+                        event.category.equals(selectedCategory, ignoreCase = true)
+                    }
                 } else {
                     allEvents
                 }

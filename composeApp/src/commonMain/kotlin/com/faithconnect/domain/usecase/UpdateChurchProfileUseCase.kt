@@ -33,7 +33,7 @@ class UpdateChurchProfileUseCase(
         // Validate profile
         val validationError = validateProfile(profile)
         if (validationError != null) {
-            return ApiResult.Error(validationError)
+            return ApiResult.Error(Exception(validationError))
         }
 
         return repository.updateProfile(profile)

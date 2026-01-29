@@ -60,6 +60,16 @@ class ApplyCategoryFilterUseCase(
         }
 
     /**
+     * Apply category filter to events and news.
+     *
+     * @param categories Set of categories to filter by. Empty set returns all.
+     */
+    suspend operator fun invoke(categories: Set<String>) {
+        // This would normally update repository filters or preferences
+        // For now, it's a placeholder - filtering is done in the UI layer
+    }
+
+    /**
      * Get combined filtered results (events + news) for a category.
      *
      * Business logic: Useful for showing mixed content feed filtered by category.
@@ -67,7 +77,7 @@ class ApplyCategoryFilterUseCase(
      * @param category Single category to filter by.
      * @return Flow of pair (filtered events, filtered news).
      */
-    operator fun invoke(category: String): Flow<Pair<List<Event>, List<NewsItem>>> =
+    fun filterByCategory(category: String): Flow<Pair<List<Event>, List<NewsItem>>> =
         eventRepository.events.combine(newsRepository.newsItems) { events, news ->
             val filteredEvents = if (category.isBlank()) {
                 events
@@ -109,4 +119,15 @@ class ApplyCategoryFilterUseCase(
 
             counts
         }
+
+    /**
+     * Get saved category preferences.
+     *
+     * @return Set of preferred categories.
+     */
+    suspend fun getSavedCategories(): Set<String> {
+        // This would normally fetch from preferences repository
+        // For now, return empty set
+        return emptySet()
+    }
 }

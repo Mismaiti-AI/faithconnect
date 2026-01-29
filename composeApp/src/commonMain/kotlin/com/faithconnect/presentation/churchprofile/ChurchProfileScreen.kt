@@ -95,27 +95,13 @@ private fun ChurchProfileContent(
     var editedProfile by remember(profile) { mutableStateOf(profile) }
     val scrollState = rememberScrollState()
 
-    val pullRefreshState = rememberPullToRefreshState()
-    if (pullRefreshState.isRefreshing) {
-        LaunchedEffect(true) {
-            onRefresh()
-        }
-    }
-
-    LaunchedEffect(isRefreshing) {
-        if (!isRefreshing) {
-            pullRefreshState.endRefresh()
-        }
-    }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
             if (isEditMode) {
                 // Edit Mode
                 OutlinedTextField(
@@ -265,13 +251,7 @@ private fun ChurchProfileContent(
                 }
             }
         }
-
-        PullToRefreshContainer(
-            state = pullRefreshState,
-            modifier = Modifier.align(Alignment.TopCenter)
-        )
     }
-}
 
 @Composable
 private fun ProfileInfoCard(

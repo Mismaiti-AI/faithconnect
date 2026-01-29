@@ -77,23 +77,9 @@ private fun EventCalendarContent(
     onClearFilter: () -> Unit,
     onRefresh: () -> Unit
 ) {
-    val pullRefreshState = rememberPullToRefreshState()
-    if (pullRefreshState.isRefreshing) {
-        LaunchedEffect(true) {
-            onRefresh()
-        }
-    }
-
-    LaunchedEffect(state.isRefreshing) {
-        if (!state.isRefreshing) {
-            pullRefreshState.endRefresh()
-        }
-    }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            // Category filter chips
-            if (state.availableCategories.isNotEmpty()) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        // Category filter chips
+        if (state.availableCategories.isNotEmpty()) {
                 LazyRow(
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -152,13 +138,7 @@ private fun EventCalendarContent(
                 }
             }
         }
-
-        PullToRefreshContainer(
-            state = pullRefreshState,
-            modifier = Modifier.align(Alignment.TopCenter)
-        )
     }
-}
 
 @OptIn(ExperimentalTime::class)
 @Composable

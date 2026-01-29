@@ -26,4 +26,9 @@ sealed class ApiResult<out T> {
     
     val isSuccess: Boolean get() = this is Success
     val isError: Boolean get() = this is Error
+
+    fun exceptionOrNull(): Throwable? = when (this) {
+        is Error -> exception
+        else -> null
+    }
 }

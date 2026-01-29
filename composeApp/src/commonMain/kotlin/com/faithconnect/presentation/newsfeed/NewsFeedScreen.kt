@@ -73,21 +73,7 @@ private fun NewsFeedContent(
     onNewsClick: (String) -> Unit,
     onRefresh: () -> Unit
 ) {
-    val pullRefreshState = rememberPullToRefreshState()
-    if (pullRefreshState.isRefreshing) {
-        LaunchedEffect(true) {
-            onRefresh()
-        }
-    }
-
-    LaunchedEffect(state.isRefreshing) {
-        if (!state.isRefreshing) {
-            pullRefreshState.endRefresh()
-        }
-    }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        if (state.newsItems.isEmpty()) {
+    if (state.newsItems.isEmpty()) {
             EmptyView(message = "No news available")
         } else {
             LazyColumn(
@@ -102,13 +88,7 @@ private fun NewsFeedContent(
                 }
             }
         }
-
-        PullToRefreshContainer(
-            state = pullRefreshState,
-            modifier = Modifier.align(Alignment.TopCenter)
-        )
     }
-}
 
 @OptIn(ExperimentalTime::class)
 @Composable

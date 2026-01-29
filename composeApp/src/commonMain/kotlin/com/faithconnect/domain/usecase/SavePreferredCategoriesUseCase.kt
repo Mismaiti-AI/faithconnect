@@ -21,9 +21,9 @@ class SavePreferredCategoriesUseCase(
     /**
      * Save preferred categories to persistent storage.
      *
-     * @param categories List of category names to save.
+     * @param categories Collection of category names to save (List or Set).
      */
-    suspend operator fun invoke(categories: List<String>) {
+    suspend operator fun invoke(categories: Collection<String>) {
         val categoriesString = categories.joinToString(CATEGORIES_SEPARATOR)
         // Note: PreferencesRepository needs to be extended to support arbitrary keys
         // For now, we'll store as part of sheet URL with a suffix
