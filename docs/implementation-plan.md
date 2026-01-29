@@ -62,13 +62,13 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Update existing theme files with ui_design colors
 
 **Tasks:**
-- [ ] **Update existing theme files (already in template):**
-- [ ]   - `AppColors.kt` - Update color values from ui_design
-- [ ]   - `AppTheme.kt` - Update MaterialTheme with new colors
-- [ ]   - `AppTheme.android.kt` - Platform-specific (already exists)
-- [ ]   - `AppTheme.ios.kt` - Platform-specific (already exists)
-- [ ] Apply colors from project-context.json ui_design section
-- [ ] Ensure dark color scheme is properly configured
+- [x] **Update existing theme files (already in template):**
+- [x]   - `AppColors.kt` - Update color values from ui_design
+- [x]   - `AppTheme.kt` - Update MaterialTheme with new colors
+- [x]   - `AppTheme.android.kt` - Platform-specific (already exists)
+- [x]   - `AppTheme.ios.kt` - Platform-specific (already exists)
+- [x] Apply colors from project-context.json ui_design section
+- [x] Ensure dark color scheme is properly configured
 
 ---
 
@@ -80,22 +80,22 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create domain model data classes (specs from project-context.json)
 
 **Tasks:**
-- [ ] **📖 Read entity specifications from `project-context.json → data_models`**
-- [ ] 
-- [ ] **Create Domain Models in `domain/model/`:**
-- [ ]   - [ ] `Event.kt` (11 fields - see context.json)
-- [ ]   - [ ] `NewsItem.kt` (10 fields - see context.json)
-- [ ]   - [ ] `ChurchProfile.kt` (10 fields - see context.json)
-- [ ] 
-- [ ] **Implementation Rules:**
-- [ ]   - Use `kotlin.time.Instant` for timestamps (NOT kotlinx.datetime)
-- [ ]   - Make all models `data class` with sensible defaults
-- [ ]   - Each model must have ALL fields from project-context.json
-- [ ] 
-- [ ] **✅ Completeness Check:**
-- [ ]   - Every entity in context.json has a .kt file
-- [ ]   - Each model has ALL required fields (no missing properties)
-- [ ]   - No empty data classes or TODOs
+- [x] **📖 Read entity specifications from `project-context.json → data_models`**
+- [x]
+- [x] **Create Domain Models in `domain/model/`:**
+- [x]   - [x] `Event.kt` (11 fields - see context.json)
+- [x]   - [x] `NewsItem.kt` (10 fields - see context.json)
+- [x]   - [x] `ChurchProfile.kt` (10 fields - see context.json)
+- [x]
+- [x] **Implementation Rules:**
+- [x]   - Use `kotlin.time.Instant` for timestamps (NOT kotlinx.datetime)
+- [x]   - Make all models `data class` with sensible defaults
+- [x]   - Each model must have ALL fields from project-context.json
+- [x]
+- [x] **✅ Completeness Check:**
+- [x]   - Every entity in context.json has a .kt file
+- [x]   - Each model has ALL required fields (no missing properties)
+- [x]   - No empty data classes or TODOs
 
 ---
 
@@ -109,28 +109,33 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create services, database, and repositories with state management
 
 **Tasks:**
-- [ ] **Create Google Sheets Service:**
-- [ ]   - `data/remote/GoogleSheetsService.kt` - CSV fetching with GID discovery
-- [ ]   - Support both edit URLs and published URLs (pubhtml)
-- [ ]   - Implement multi-format date parsing (yyyy-MM-dd, yyyy/MM/dd, dd/MM/yyyy)
-- [ ]   - Add CSV response validation (check for HTML error pages)
-- [ ]   - Handle missing tabs gracefully (return empty list, not crash)
-- [ ] **Create Room Database:**
-- [ ]   - `data/local/AppDatabase.kt` - Room @Database
-- [ ]   - `data/local/entity/EventEntity.kt` - Room @Entity
-- [ ]   - `data/local/dao/EventDao.kt` - Room @Dao with CRUD
-- [ ]   - `data/local/entity/NewsItemEntity.kt` - Room @Entity
-- [ ]   - `data/local/dao/NewsItemDao.kt` - Room @Dao with CRUD
-- [ ]   - `data/local/entity/ChurchProfileEntity.kt` - Room @Entity
-- [ ]   - `data/local/dao/ChurchProfileDao.kt` - Room @Dao with CRUD
-- [ ]   - Store timestamps as Long (not Instant) in entities
-- [ ] **Create Repositories (with STATE MANAGEMENT):**
-- [ ]   - [ ] `data/repositories/churchprofile/ChurchProfileRepository.kt`
-- [ ]   - [ ] `data/repositories/event/EventRepository.kt`
-- [ ]   - [ ] `data/repositories/newsitem/NewsItemRepository.kt`
-- [ ]   - Each repository holds `MutableStateFlow` for its data
-- [ ]   - Exposes `StateFlow` to ViewModels (read-only)
-- [ ]   - Implements offline-first: cache on fetch, serve from cache when offline
+- [x] **Create Google Sheets Service:**
+- [x]   - `data/remote/GoogleSheetsService.kt` - CSV fetching with GID discovery
+- [x]   - Support both edit URLs and published URLs (pubhtml)
+- [x]   - Implement multi-format date parsing (yyyy-MM-dd, yyyy/MM/dd, dd/MM/yyyy)
+- [x]   - Add CSV response validation (check for HTML error pages)
+- [x]   - Handle missing tabs gracefully (return empty list, not crash)
+- [x] **Create Room Database:**
+- [x]   - `core/database/AppDatabase.kt` - Room @Database
+- [x]   - `data/local/entity/EventEntity.kt` - Room @Entity
+- [x]   - `data/local/dao/EventDao.kt` - Room @Dao with CRUD
+- [x]   - `data/local/entity/NewsItemEntity.kt` - Room @Entity
+- [x]   - `data/local/dao/NewsItemDao.kt` - Room @Dao with CRUD
+- [x]   - `data/local/entity/ChurchProfileEntity.kt` - Room @Entity
+- [x]   - `data/local/dao/ChurchProfileDao.kt` - Room @Dao with CRUD
+- [x]   - Store timestamps as Long (not Instant) in entities
+- [x] **Create Repositories (with STATE MANAGEMENT):**
+- [x]   - [x] `domain/repository/ChurchProfileRepository.kt` (interface)
+- [x]   - [x] `data/repository/churchprofile/ChurchProfileRepositoryImpl.kt` (implementation)
+- [x]   - [x] `domain/repository/EventRepository.kt` (interface)
+- [x]   - [x] `data/repository/event/EventRepositoryImpl.kt` (implementation)
+- [x]   - [x] `domain/repository/NewsItemRepository.kt` (interface)
+- [x]   - [x] `data/repository/newsitem/NewsItemRepositoryImpl.kt` (implementation)
+- [x]   - [x] `domain/repository/PreferencesRepository.kt` (interface)
+- [x]   - [x] `data/repository/preferences/PreferencesRepositoryImpl.kt` (implementation)
+- [x]   - Each repository holds `MutableStateFlow` for its data
+- [x]   - Exposes `StateFlow` to ViewModels (read-only)
+- [x]   - Implements offline-first: cache on fetch, serve from cache when offline
 
 ---
 
@@ -142,25 +147,25 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create use case classes for business logic
 
 **Tasks:**
-- [ ] **Create Use Cases in `domain/usecase/`:**
-- [ ]   - `GetUpcomingEventsUseCase.kt` (feature: Event Calendar)
-- [ ]   - `FilterEventsByCategoryUseCase.kt` (feature: Event Calendar)
-- [ ]   - `SearchEventsUseCase.kt` (feature: Event Calendar)
-- [ ]   - `GetLatestNewsUseCase.kt` (feature: News Feed)
-- [ ]   - `MarkNewsAsReadUseCase.kt` (feature: News Feed)
-- [ ]   - `LoadNewsByDateRangeUseCase.kt` (feature: News Feed)
-- [ ]   - `FetchEventLocationUseCase.kt` (feature: Event Details)
-- [ ]   - `GetEventDescriptionUseCase.kt` (feature: Event Details)
-- [ ]   - `OpenMapForLocationUseCase.kt` (feature: Event Details)
-- [ ]   - `ApplyCategoryFilterUseCase.kt` (feature: Category Filtering)
-- [ ]   - `SavePreferredCategoriesUseCase.kt` (feature: Category Filtering)
-- [ ]   - `ResetFiltersUseCase.kt` (feature: Category Filtering)
-- [ ]   - `SetGoogleSheetUrlUseCase.kt` (feature: Admin Configuration)
-- [ ]   - `TestSheetConnectionUseCase.kt` (feature: Admin Configuration)
-- [ ]   - `UpdateChurchProfileUseCase.kt` (feature: Admin Configuration)
-- [ ] Each UseCase: single `operator fun invoke()` or `suspend operator fun invoke()`
-- [ ] UseCase calls Repository, applies business logic, returns result
-- [ ] Keep UseCases focused - one responsibility each
+- [x] **Create Use Cases in `domain/usecase/`:**
+- [x]   - `GetUpcomingEventsUseCase.kt` (feature: Event Calendar)
+- [x]   - `FilterEventsByCategoryUseCase.kt` (feature: Event Calendar)
+- [x]   - `SearchEventsUseCase.kt` (feature: Event Calendar)
+- [x]   - `GetLatestNewsUseCase.kt` (feature: News Feed)
+- [x]   - `MarkNewsAsReadUseCase.kt` (feature: News Feed)
+- [x]   - `LoadNewsByDateRangeUseCase.kt` (feature: News Feed)
+- [x]   - `FetchEventLocationUseCase.kt` (feature: Event Details)
+- [x]   - `GetEventDescriptionUseCase.kt` (feature: Event Details)
+- [x]   - `OpenMapForLocationUseCase.kt` (feature: Event Details)
+- [x]   - `ApplyCategoryFilterUseCase.kt` (feature: Category Filtering)
+- [x]   - `SavePreferredCategoriesUseCase.kt` (feature: Category Filtering)
+- [x]   - `ResetFiltersUseCase.kt` (feature: Category Filtering)
+- [x]   - `SetGoogleSheetUrlUseCase.kt` (feature: Admin Configuration)
+- [x]   - `TestSheetConnectionUseCase.kt` (feature: Admin Configuration)
+- [x]   - `UpdateChurchProfileUseCase.kt` (feature: Admin Configuration)
+- [x] Each UseCase: single `operator fun invoke()` or `suspend operator fun invoke()`
+- [x] UseCase calls Repository, applies business logic, returns result
+- [x] Keep UseCases focused - one responsibility each
 
 ---
 
@@ -173,23 +178,23 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create THIN ViewModels that observe repository state
 
 **Tasks:**
-- [ ] **Create ViewModels (feature-based organization):**
-- [ ]   - [ ] `presentation/adminconfig/AdminConfigViewModel.kt` with `AdminConfigUiState` sealed interface
-- [ ]   - [ ] `presentation/churchprofile/ChurchProfileViewModel.kt` with `ChurchProfileUiState` sealed interface
-- [ ]   - [ ] `presentation/eventcalendar/EventCalendarViewModel.kt` with `EventCalendarUiState` sealed interface
-- [ ]   - [ ] `presentation/eventcategoryfilter/EventCategoryFilterViewModel.kt` with `EventCategoryFilterUiState` sealed interface
-- [ ]   - [ ] `presentation/eventdetail/EventDetailViewModel.kt` with `EventDetailUiState` sealed interface
-- [ ]   - [ ] `presentation/newsdetail/NewsDetailViewModel.kt` with `NewsDetailUiState` sealed interface
-- [ ]   - [ ] `presentation/newsfeed/NewsFeedViewModel.kt` with `NewsFeedUiState` sealed interface
-- [ ]   - [ ] `presentation/onboarding/OnboardingViewModel.kt` with `OnboardingUiState` sealed interface
-- [ ]   - [ ] `presentation/settings/SettingsViewModel.kt` with `SettingsUiState` sealed interface
-- [ ] **UiState Pattern:**
-- [ ]   - `sealed interface XxxUiState { Loading, Success(data), Error(message) }`
-- [ ]   - ViewModel exposes `val uiState: StateFlow<XxxUiState>`
-- [ ] **THIN ViewModel Pattern:**
-- [ ]   - Observe repository StateFlow, transform to UiState
-- [ ]   - NO business logic in ViewModel - delegate to UseCases
-- [ ]   - Use `viewModelScope.launch` for coroutines
+- [x] **Create ViewModels (feature-based organization):**
+- [x]   - [x] `presentation/adminconfig/AdminConfigViewModel.kt` with `AdminConfigUiState` sealed interface
+- [x]   - [x] `presentation/churchprofile/ChurchProfileViewModel.kt` with `ChurchProfileUiState` sealed interface
+- [x]   - [x] `presentation/eventcalendar/EventCalendarViewModel.kt` with `EventCalendarUiState` sealed interface
+- [x]   - [x] `presentation/eventcategoryfilter/EventCategoryFilterViewModel.kt` with `EventCategoryFilterUiState` sealed interface
+- [x]   - [x] `presentation/eventdetail/EventDetailViewModel.kt` with `EventDetailUiState` sealed interface
+- [x]   - [x] `presentation/newsdetail/NewsDetailViewModel.kt` with `NewsDetailUiState` sealed interface
+- [x]   - [x] `presentation/newsfeed/NewsFeedViewModel.kt` with `NewsFeedUiState` sealed interface
+- [x]   - [x] `presentation/onboarding/OnboardingViewModel.kt` with `OnboardingUiState` sealed interface
+- [x]   - [x] `presentation/settings/SettingsViewModel.kt` with `SettingsUiState` sealed interface
+- [x] **UiState Pattern:**
+- [x]   - `sealed interface XxxUiState { Loading, Success(data), Error(message) }`
+- [x]   - ViewModel exposes `val uiState: StateFlow<XxxUiState>`
+- [x] **THIN ViewModel Pattern:**
+- [x]   - Observe repository StateFlow, transform to UiState
+- [x]   - NO business logic in ViewModel - delegate to UseCases
+- [x]   - Use `viewModelScope.launch` for coroutines
 
 ---
 
@@ -201,30 +206,34 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Create screen composables with proper state handling
 
 **Tasks:**
-- [ ] **Create Screens (feature-based organization):**
-- [ ]   - [ ] `presentation/adminconfig/AdminConfigScreen.kt` using `AdminConfigViewModel`
-- [ ]   - [ ] `presentation/adminconfig/AdminConfigUiState.kt` sealed interface
-- [ ]   - [ ] `presentation/churchprofile/ChurchProfileScreen.kt` using `ChurchProfileViewModel`
-- [ ]   - [ ] `presentation/churchprofile/ChurchProfileUiState.kt` sealed interface
-- [ ]   - [ ] `presentation/eventcalendar/EventCalendarScreen.kt` using `EventCalendarViewModel`
-- [ ]   - [ ] `presentation/eventcalendar/EventCalendarUiState.kt` sealed interface
-- [ ]   - [ ] `presentation/eventcategoryfilter/EventCategoryFilterScreen.kt` using `EventCategoryFilterViewModel`
-- [ ]   - [ ] `presentation/eventcategoryfilter/EventCategoryFilterUiState.kt` sealed interface
-- [ ]   - [ ] `presentation/eventdetail/EventDetailScreen.kt` using `EventDetailViewModel`
-- [ ]   - [ ] `presentation/eventdetail/EventDetailUiState.kt` sealed interface
-- [ ]   - [ ] `presentation/newsdetail/NewsDetailScreen.kt` using `NewsDetailViewModel`
-- [ ]   - [ ] `presentation/newsdetail/NewsDetailUiState.kt` sealed interface
-- [ ]   - [ ] `presentation/newsfeed/NewsFeedScreen.kt` using `NewsFeedViewModel`
-- [ ]   - [ ] `presentation/newsfeed/NewsFeedUiState.kt` sealed interface
-- [ ]   - [ ] `presentation/onboarding/OnboardingScreen.kt` using `OnboardingViewModel`
-- [ ]   - [ ] `presentation/onboarding/OnboardingUiState.kt` sealed interface
-- [ ]   - [ ] `presentation/settings/SettingsScreen.kt` using `SettingsViewModel`
-- [ ]   - [ ] `presentation/settings/SettingsUiState.kt` sealed interface
-- [ ] **Screen Pattern:**
-- [ ]   - `@Composable fun XxxScreen(viewModel: XxxViewModel = koinViewModel())`
-- [ ]   - Collect state: `val uiState by viewModel.uiState.collectAsState()`
-- [ ]   - Handle Loading/Success/Error states with `when(uiState)`
-- [ ]   - Use `koinViewModel()` as DEFAULT parameter (never pass null)
+- [x] **Create Screens (feature-based organization):**
+- [x]   - [x] `presentation/adminconfig/AdminConfigScreen.kt` using `AdminConfigViewModel`
+- [x]   - [x] `presentation/adminconfig/AdminConfigUiState.kt` sealed interface
+- [x]   - [x] `presentation/churchprofile/ChurchProfileScreen.kt` using `ChurchProfileViewModel`
+- [x]   - [x] `presentation/churchprofile/ChurchProfileUiState.kt` sealed interface
+- [x]   - [x] `presentation/eventcalendar/EventCalendarScreen.kt` using `EventCalendarViewModel`
+- [x]   - [x] `presentation/eventcalendar/EventCalendarUiState.kt` sealed interface
+- [x]   - [x] `presentation/eventcategoryfilter/EventCategoryFilterScreen.kt` using `EventCategoryFilterViewModel`
+- [x]   - [x] `presentation/eventcategoryfilter/EventCategoryFilterUiState.kt` sealed interface
+- [x]   - [x] `presentation/eventdetail/EventDetailScreen.kt` using `EventDetailViewModel`
+- [x]   - [x] `presentation/eventdetail/EventDetailUiState.kt` sealed interface
+- [x]   - [x] `presentation/newsdetail/NewsDetailScreen.kt` using `NewsDetailViewModel`
+- [x]   - [x] `presentation/newsdetail/NewsDetailUiState.kt` sealed interface
+- [x]   - [x] `presentation/newsfeed/NewsFeedScreen.kt` using `NewsFeedViewModel`
+- [x]   - [x] `presentation/newsfeed/NewsFeedUiState.kt` sealed interface
+- [x]   - [x] `presentation/onboarding/OnboardingScreen.kt` using `OnboardingViewModel`
+- [x]   - [x] `presentation/onboarding/OnboardingUiState.kt` sealed interface
+- [x]   - [x] `presentation/settings/SettingsScreen.kt` using `SettingsViewModel`
+- [x]   - [x] `presentation/settings/SettingsUiState.kt` sealed interface
+- [x] **Screen Pattern:**
+- [x]   - `@Composable fun XxxScreen(viewModel: XxxViewModel = koinViewModel())`
+- [x]   - Collect state: `val uiState by viewModel.uiState.collectAsState()`
+- [x]   - Handle Loading/Success/Error states with `when(uiState)`
+- [x]   - Use `koinViewModel()` as DEFAULT parameter (never pass null)
+- [x] **Common Components:**
+- [x]   - [x] `presentation/components/ErrorView.kt` - Error display with retry
+- [x]   - [x] `presentation/components/LoadingView.kt` - Loading indicator
+- [x]   - [x] `presentation/components/EmptyView.kt` - Empty state display
 
 ---
 
@@ -236,22 +245,22 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Set up type-safe navigation with @Serializable routes
 
 **Tasks:**
-- [ ] **Create Navigation in `navigation/`:**
-- [ ]   - `NavRoutes.kt` - @Serializable route classes (NOT string routes)
-- [ ]   - `NavigationHost.kt` - NavHost with composable<Route> entries
-- [ ]   - Start destination: `HomeScreen`
-- [ ] **Navigation Flows:**
-- [ ]   - HomeScreen -> NewsFeedScreen (tap 'Latest News')
-- [ ]   - HomeScreen -> EventCalendarScreen (tap 'Upcoming Events')
-- [ ]   - HomeScreen -> ChurchProfileScreen (tap 'About Us')
-- [ ]   - ChurchProfileScreen -> SetupScreen (tap 'Update Sheet')
-- [ ]   - SetupScreen -> HomeScreen (after successful sheet load)
-- [ ]   - ... (+1 more flows)
-- [ ] **Type-Safe Navigation:**
-- [ ]   - `@Serializable object Home` for simple routes
-- [ ]   - `@Serializable data class Detail(val id: String)` for parameterized routes
-- [ ]   - Navigate: `navController.navigate(Detail(id = "123"))`
-- [ ] For setup screens: check existing state in ViewModel init (skip if data exists)
+- [x] **Create Navigation in `navigation/`:**
+- [x]   - `NavRoutes.kt` - @Serializable route classes (NOT string routes)
+- [x]   - `NavigationHost.kt` - NavHost with composable<Route> entries
+- [x]   - Start destination: `HomeScreen`
+- [x] **Navigation Flows:**
+- [x]   - HomeScreen -> NewsFeedScreen (tap 'Latest News')
+- [x]   - HomeScreen -> EventCalendarScreen (tap 'Upcoming Events')
+- [x]   - HomeScreen -> ChurchProfileScreen (tap 'About Us')
+- [x]   - ChurchProfileScreen -> SetupScreen (tap 'Update Sheet')
+- [x]   - SetupScreen -> HomeScreen (after successful sheet load)
+- [x]   - ... (+1 more flows)
+- [x] **Type-Safe Navigation:**
+- [x]   - `@Serializable object Home` for simple routes
+- [x]   - `@Serializable data class Detail(val id: String)` for parameterized routes
+- [x]   - Navigate: `navController.navigate(Detail(id = "123"))`
+- [x] For setup screens: check existing state in ViewModel init (skip if data exists)
 
 ---
 
@@ -263,46 +272,51 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Register all classes in Koin (now that they all exist)
 
 **Tasks:**
-- [ ] **Create Koin Modules in `di/`:**
-- [ ]   - `AppModule.kt` - main module with all registrations
-- [ ]   - `expect fun platformModule(): Module` in commonMain
-- [ ]   - `actual fun platformModule(): Module` in androidMain/iosMain
-- [ ] 
-- [ ] **Register ALL classes created in previous phases:**
-- [ ] *Repositories:*
-- [ ]   - `singleOf(::ChurchProfileRepository)`
-- [ ]   - `singleOf(::EventRepository)`
-- [ ]   - `singleOf(::NewsItemRepository)`
-- [ ] *UseCases:*
-- [ ]   - `factoryOf(::GetUpcomingEventsUseCase)`
-- [ ]   - `factoryOf(::FilterEventsByCategoryUseCase)`
-- [ ]   - `factoryOf(::SearchEventsUseCase)`
-- [ ]   - `factoryOf(::GetLatestNewsUseCase)`
-- [ ]   - `factoryOf(::MarkNewsAsReadUseCase)`
-- [ ]   - `factoryOf(::LoadNewsByDateRangeUseCase)`
-- [ ]   - `factoryOf(::FetchEventLocationUseCase)`
-- [ ]   - `factoryOf(::GetEventDescriptionUseCase)`
-- [ ]   - `factoryOf(::OpenMapForLocationUseCase)`
-- [ ]   - `factoryOf(::ApplyCategoryFilterUseCase)`
-- [ ]   - `factoryOf(::SavePreferredCategoriesUseCase)`
-- [ ]   - `factoryOf(::ResetFiltersUseCase)`
-- [ ]   - `factoryOf(::SetGoogleSheetUrlUseCase)`
-- [ ]   - `factoryOf(::TestSheetConnectionUseCase)`
-- [ ]   - `factoryOf(::UpdateChurchProfileUseCase)`
-- [ ] *ViewModels:*
-- [ ]   - `viewModelOf(::AdminConfigViewModel)`
-- [ ]   - `viewModelOf(::ChurchProfileViewModel)`
-- [ ]   - `viewModelOf(::EventCalendarViewModel)`
-- [ ]   - `viewModelOf(::EventCategoryFilterViewModel)`
-- [ ]   - `viewModelOf(::EventDetailViewModel)`
-- [ ]   - `viewModelOf(::NewsDetailViewModel)`
-- [ ]   - `viewModelOf(::NewsFeedViewModel)`
-- [ ]   - `viewModelOf(::OnboardingViewModel)`
-- [ ]   - `viewModelOf(::SettingsViewModel)`
-- [ ] 
-- [ ] **Platform-Specific Dependencies:**
-- [ ]   - Use Interface + platformModule injection (NOT expect object)
-- [ ]   - Example: `interface DateFormatter` → `AndroidDateFormatter` / `IosDateFormatter`
+- [x] **Create Koin Modules in `di/`:**
+- [x]   - `AppModule.kt` - main module with all registrations
+- [x]   - `NetworkModule.kt` - HttpClient and GoogleSheetsService
+- [x]   - `DatabaseModule.kt` - Room database and DAOs
+- [x]   - `PlatformModule.kt` - expect fun platformModule(): Module in commonMain
+- [x]   - `PlatformModule.android.kt` - actual fun platformModule() in androidMain
+- [x]   - `PlatformModule.ios.kt` - actual fun platformModule() in iosMain
+- [x]
+- [x] **Register ALL classes created in previous phases:**
+- [x] *Repositories:*
+- [x]   - `single<PreferencesRepository> { PreferencesRepositoryImpl(...) }`
+- [x]   - `single<EventRepository> { EventRepositoryImpl(...) }`
+- [x]   - `single<NewsItemRepository> { NewsItemRepositoryImpl(...) }`
+- [x]   - `single<ChurchProfileRepository> { ChurchProfileRepositoryImpl(...) }`
+- [x] *UseCases:*
+- [x]   - `factoryOf(::GetUpcomingEventsUseCase)`
+- [x]   - `factoryOf(::FilterEventsByCategoryUseCase)`
+- [x]   - `factoryOf(::SearchEventsUseCase)`
+- [x]   - `factoryOf(::GetLatestNewsUseCase)`
+- [x]   - `factoryOf(::MarkNewsAsReadUseCase)`
+- [x]   - `factoryOf(::LoadNewsByDateRangeUseCase)`
+- [x]   - `factoryOf(::FetchEventLocationUseCase)`
+- [x]   - `factoryOf(::GetEventDescriptionUseCase)`
+- [x]   - `factoryOf(::OpenMapForLocationUseCase)`
+- [x]   - `factoryOf(::ApplyCategoryFilterUseCase)`
+- [x]   - `factoryOf(::SavePreferredCategoriesUseCase)`
+- [x]   - `factoryOf(::ResetFiltersUseCase)`
+- [x]   - `factoryOf(::SetGoogleSheetUrlUseCase)`
+- [x]   - `factoryOf(::TestSheetConnectionUseCase)`
+- [x]   - `factoryOf(::UpdateChurchProfileUseCase)`
+- [x] *ViewModels:*
+- [x]   - `viewModelOf(::AdminConfigViewModel)`
+- [x]   - `viewModelOf(::ChurchProfileViewModel)`
+- [x]   - `viewModelOf(::EventCalendarViewModel)`
+- [x]   - `viewModelOf(::EventCategoryFilterViewModel)`
+- [x]   - `factory { (eventId: String) -> EventDetailViewModel(...) }` (with parameter)
+- [x]   - `factory { (newsId: String) -> NewsDetailViewModel(...) }` (with parameter)
+- [x]   - `viewModelOf(::NewsFeedViewModel)`
+- [x]   - `viewModelOf(::OnboardingViewModel)`
+- [x]   - `viewModelOf(::SettingsViewModel)`
+- [x]
+- [x] **Platform-Specific Dependencies:**
+- [x]   - AppDatabase registered in platformModule (Android: with Context, iOS: with file path)
+- [x]   - PreferencesDataSource registered in platformModule (Android: DataStore, iOS: NSUserDefaults)
+- [x]   - Updated App.kt to initialize Koin with all modules
 
 ---
 
@@ -314,41 +328,41 @@ Each phase specifies which skills to load to minimize token usage.
 **Description:** Review all phases and fix potential issues before GitHub Actions build
 
 **Tasks:**
-- [ ] **Review Each Phase for Common Issues:**
-- [ ] 
-- [ ] *Theme:*
-- [ ]   - Colors match ui_design specifications
-- [ ]   - Dark mode properly toggles if enabled
-- [ ] 
-- [ ] *Domain Models:*
-- [ ]   - Using `kotlin.time.Instant` (NOT kotlinx.datetime)
-- [ ]   - All fields have sensible defaults
-- [ ] 
-- [ ] *Data Layer:*
-- [ ]   - Repositories hold StateFlow (state management)
-- [ ]   - Timestamps stored as Long in Room entities
-- [ ]   - Error handling returns empty list, not crash
-- [ ] 
-- [ ] *ViewModels:*
-- [ ]   - THIN pattern - observe repository, no business logic
-- [ ]   - UiState sealed interface with Loading/Success/Error
-- [ ] 
-- [ ] *Screens:*
-- [ ]   - `koinViewModel()` as default parameter
-- [ ]   - Handles all UiState branches
-- [ ] 
-- [ ] *Navigation:*
-- [ ]   - @Serializable route classes (not strings)
-- [ ]   - Icons use `Icons.AutoMirrored.Filled` for arrows/lists
-- [ ] 
-- [ ] *DI:*
-- [ ]   - ALL ViewModels registered with `viewModelOf()`
-- [ ]   - ALL Repositories registered with `singleOf()`
-- [ ] 
-- [ ] **Final Tasks:**
-- [ ]   - Update README.md with app name, description, features from project-context.json
-- [ ]   - Remove any placeholder comments
-- [ ]   - Ensure no empty folders remain
+- [x] **Review Each Phase for Common Issues:**
+- [x]
+- [x] *Theme:*
+- [x]   - Colors match ui_design specifications
+- [x]   - Dark mode properly toggles if enabled
+- [x]
+- [x] *Domain Models:*
+- [x]   - Using `kotlin.time.Instant` (NOT kotlinx.datetime)
+- [x]   - All fields have sensible defaults
+- [x]
+- [x] *Data Layer:*
+- [x]   - Repositories hold StateFlow (state management)
+- [x]   - Timestamps stored as Long in Room entities
+- [x]   - Error handling returns empty list, not crash
+- [x]
+- [x] *ViewModels:*
+- [x]   - THIN pattern - observe repository, no business logic
+- [x]   - UiState sealed interface with Loading/Success/Error
+- [x]
+- [x] *Screens:*
+- [x]   - `koinViewModel()` as default parameter
+- [x]   - Handles all UiState branches
+- [x]
+- [x] *Navigation:*
+- [x]   - @Serializable route classes (not strings)
+- [x]   - Icons use `Icons.AutoMirrored.Filled` for arrows/lists
+- [x]
+- [x] *DI:*
+- [x]   - ALL ViewModels registered with `viewModelOf()`
+- [x]   - ALL Repositories registered with `singleOf()`
+- [x]
+- [x] **Final Tasks:**
+- [x]   - Update README.md with app name, description, features from project-context.json
+- [x]   - Remove any placeholder comments
+- [x]   - Ensure no empty folders remain
 
 ---
 
