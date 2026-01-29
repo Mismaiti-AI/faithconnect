@@ -14,7 +14,7 @@ import kotlin.time.Instant
 data class NewsItem(
     val id: String = "",
     val headline: String = "",
-    val publishDate: Instant = Instant.ZERO,
+    val publishDate: Instant = Instant.fromEpochMilliseconds(0),
     val author: String = "",
     val body: String = "",
     val category: String = "",

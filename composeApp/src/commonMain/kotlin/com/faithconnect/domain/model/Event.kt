@@ -13,7 +13,7 @@ import kotlin.time.Instant
 data class Event(
     val id: String = "",
     val title: String = "",
-    val date: Instant = Instant.ZERO,
+    val date: Instant = Instant.fromEpochMilliseconds(0),
     val category: String = "",
     val location: String = "",
     val description: String = "",

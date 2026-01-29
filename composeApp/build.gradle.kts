@@ -34,6 +34,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.androidx.room.sqlite.wrapper)
+            implementation(libs.androidx.datastore.preferences)
+            implementation(libs.androidx.datastore.core)
 
             implementation(libs.koin.androidx.compose)
         }

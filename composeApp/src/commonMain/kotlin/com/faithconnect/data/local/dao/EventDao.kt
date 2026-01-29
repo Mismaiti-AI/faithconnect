@@ -10,7 +10,7 @@ interface EventDao {
     fun observeAll(): Flow<List<EventEntity>>
 
     @Query("SELECT * FROM events ORDER BY date ASC")
-    suspend fun getAll(): List<EventEntity>>
+    suspend fun getAll(): List<EventEntity>
 
     @Query("SELECT * FROM events WHERE id = :id")
     suspend fun getById(id: String): EventEntity?

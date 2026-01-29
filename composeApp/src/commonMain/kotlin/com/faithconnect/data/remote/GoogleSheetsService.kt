@@ -223,7 +223,7 @@ class GoogleSheetsService(
      */
     @OptIn(ExperimentalTime::class)
     private fun parseInstant(dateString: String?): Instant {
-        if (dateString.isNullOrBlank()) return Instant.ZERO
+        if (dateString.isNullOrBlank()) return Instant.fromEpochMilliseconds(0)
 
         // Supported formats:
         // - ISO: 2024-10-20T10:00:00Z
@@ -247,7 +247,7 @@ class GoogleSheetsService(
                 } catch (e: Exception) {
                     // Fallback to current time
                     println("Could not parse date: $dateString")
-                    Instant.ZERO
+                    Instant.fromEpochMilliseconds(0)
                 }
             }
         }
