@@ -1,6 +1,6 @@
 {
   "session_id": "session_1769778805203_xdobqkribvs",
-  "generated_at": "2026-01-30T13:15:43.938252",
+  "generated_at": "2026-01-30T13:16:34.786404",
   "app_config": {
     "name": "FaithConnect",
     "purpose": "Help congregation get an update of church activities, special events like seminar or workshop, news and article",
@@ -817,5 +817,7 @@
     "apple_id": "mismaiti@gmail.com",
     "enable_firebase_distribution": true,
     "enable_testflight": true
-  }
+  },
+  "is_post_gen_branch": true,
+  "base_branch": "main"
 }
