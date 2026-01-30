@@ -87,7 +87,7 @@ fun SettingsScreen(
 @Composable
 private fun SettingsContent(
     state: SettingsUiState.Success,
-    onDarkModeToggle: () -> Unit,
+    onDarkModeToggle: (Boolean) -> Unit,
     onCategoryToggle: (String) -> Unit,
     onClearCache: () -> Unit,
     onResetDefaults: () -> Unit,
@@ -125,7 +125,7 @@ private fun SettingsContent(
                     }
                     Switch(
                         checked = state.isDarkMode,
-                        onCheckedChange = { onDarkModeToggle() },
+                        onCheckedChange = onDarkModeToggle,
                         enabled = !state.isSaving
                     )
                 }
